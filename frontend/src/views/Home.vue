@@ -2,14 +2,13 @@
     section.swimming__pool
         .wrapper
             h1 Бассейны.ру - Лучшие бассейны в Тюмени
-            img.pool__photo(src='../assets/Home/swimming-pool.jpg')
-            h2 Бассейн большой
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             button
-                router-link(to="/record-pool") Записаться 
+                router-link(to="/record") Записаться 
 </template>
 <script>
 export default {
+    
 }
 </script>
 <style lang="scss" scoped>
@@ -34,11 +33,12 @@ export default {
                 margin-top: 0;
             }
             button{
-                align-self: flex-end;
                 a{
                     all: unset;
                 }
             }
+            
+
         }
     }
 </style>

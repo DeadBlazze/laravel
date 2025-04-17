@@ -127,6 +127,7 @@ export default {
                 input{
                     height:  2rem;
                     font-size: 1.5rem;
+                    padding-left: 1rem;
                 }
                 span.error{
                     font-size: 1.1rem;

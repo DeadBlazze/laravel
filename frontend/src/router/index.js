@@ -3,7 +3,8 @@ import Home from '../views/Home.vue'
 import UserCabinet from '../views/UserCabinet.vue'
 import Login from '@/views/Login.vue'
 import Reg from '@/views/Reg.vue'
-import recordPool from '@/views/recordPool.vue'
+import Record from '@/views/Record.vue'
+import N404 from '@/views/404/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,9 +30,14 @@ const router = createRouter({
       component: Login,
     },
     {
-      path: '/record-pool',
-      name: 'recordPool',
-      component: recordPool,
+      path: '/Record',
+      name: 'Record',
+      component: Record,
+    },
+    {
+      path: '/:pathMatch(.*)',
+      name: 'N404',
+      component: N404,
     }
   ],
 })
