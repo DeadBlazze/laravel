@@ -5,6 +5,7 @@ import Login from '@/views/Login.vue'
 import Reg from '@/views/Reg.vue'
 import Record from '@/views/Record.vue'
 import N404 from '@/views/404/NotFound.vue'
+import Admin from '@/views/Admin.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,9 +31,14 @@ const router = createRouter({
       component: Login,
     },
     {
-      path: '/Record',
+      path: '/record',
       name: 'Record',
       component: Record,
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin,
     },
     {
       path: '/:pathMatch(.*)',

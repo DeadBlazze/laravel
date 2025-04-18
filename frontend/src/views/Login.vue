@@ -13,7 +13,7 @@
                     span.error(v-if="errors.password") {{ errors.password }}
                 .button__group
                     input(type='submit' value='Войти')
-                    router-link(to="/reg") Не зарегистрированы
+                    router-link(to="/reg") Не зарегистрированы?
 </template>
 <script>
 import axios from 'axios'
@@ -43,25 +43,30 @@ export default {
         },
         async handleSubmit(){
             if (!this.validateForm()) {
-                console.log('Всё плохо') 
                 return 
             }
             try{
-                const response = await axios.post(import.meta.env.VITE_BACK_URL+'/register',{
-                    "fio":this.form.fio,
-                    "birthday":this.form.birthday,
-                    "male":this.form.male,
-                    "tel":this.form.tel,
+                const response = await axios.post(import.meta.env.VITE_BACK_URL+'/auth',{
                     "email":this.form.email,
-                    "password":this.form.password,
+                    "password":this.form.password
                 })
                 console.log(response.data)
+                if(response.data.token && response.data.role === 'admin'){
+                    localStorage.setItem('token', response.data.token);
+                    this.$router.push('/admin')
+                }
+                else if(response.data.token){
+                    localStorage.setItem('token', response.data.token);
+                    this.$router.push('/user-cabinet')
+                }
+                else{
+                    alert('Ошибка входа'); 
+                }
             }
             catch(error){
-                const msg = error.response?.data || 'Ошибка входа';
+                const msg = error.response?.data.err || 'Ошибка входа';
                 alert(msg);
             }
-            console.log('Всё чётко')
         }
     }
 }
@@ -108,7 +113,7 @@ export default {
                 gap: 10px;
                 align-items: center;
                 a{
-                    font-size: 1.5rem;
+                    font-size: 1.3rem;
                 }
             }
 

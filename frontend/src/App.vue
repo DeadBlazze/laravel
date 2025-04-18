@@ -5,10 +5,20 @@
                 li 
                     router-link(to="/") Название
                 li
-                    router-link(to="/user-cabinet") Личный кабинет
+                    router-link(v-if="isAdminPage" to="/admin") Панель администратора
+                    router-link(v-else to="/user-cabinet") Личный кабинет
     RouterView
 </template>
-
+<script>
+export default {
+    computed: {
+        isAdminPage() {
+            const path = this.$route.path;
+            return path === '/' || path.startsWith('/admin');
+        }
+    }
+}
+</script>
 <style scoped lang="scss">
 header.header{
     padding: 0;

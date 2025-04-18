@@ -21,7 +21,7 @@ class AuthController extends Controller
             'birthday' => ['required', 'date_format:Y-m-d']
         ]);
         if($validator->fails()){
-            return response()->json(['Ошибка валдиации'=> $validator->errors()]);
+            return response()->json(['Ошибка валдиации'=> $validator->errors()],402);
         }
         $tel = $request->input('tel');
         $fio = $request->input('fio');
@@ -31,7 +31,7 @@ class AuthController extends Controller
         $birthday = $request->input('birthday');
         $userExist = DB::select('SELECT * FROM users where email = ?', [$email]);
         if($userExist){
-            return response()->json(['err'=>'Данный пользователь уже существует']);
+            return response()->json(['err'=>'Данный пользователь уже существует'],402);
         }
         $password = Hash::make($password);
         DB::insert('INSERT INTO `users` (`fio`, `tel`, `birthday`, `email`, `password`) VALUES (?, ?, ?, ?, ?)', [$fio, $tel, $birthday, $email, $password]);
@@ -45,7 +45,7 @@ class AuthController extends Controller
         ];
         $payload = JWTFactory::customClaims($payloadParam)->make();
         $token = JWTAuth::encode($payload)->get();
-        return response()->json(['token'=>$token]);
+        return response()->json(['token'=>$token],200);
     }
     public function auth(Request $request){
         $validator = Validator::make($request->all(), [
@@ -53,24 +53,27 @@ class AuthController extends Controller
             'email' => ['required', 'regex:/^[0-9A-Za-z_.+-]{1,64}@[0-9A-Za-z_-]{1,10}\.[0-9A-Za-z_-]{2,6}$/']
         ]);
         if($validator->fails()){
-            return response()->json(['Ошибка валдиации'=> $validator->errors()]);
+            return response()->json(['Ошибка валдиации'=> $validator->errors()],402);
         }
         $password = $request->input('password');
         $email = $request->input('email');
         $user = DB::select('SELECT * FROM users WHERE email = ?', [$email]);
+        if(!$user){
+            return response()->json(['err' => 'Неверный логин или пароль'],402);
+        }
         if (!Hash::check($password, $user[0]->password)) {
-            return response()->json(['err' => 'Неверный логин или пароль']);
+            return response()->json(['err' => 'Неверный логин или пароль'],402);
         }
         $id_user = $user[0]->id_user;
-        $roles = 'user';
+        $role = $user[0]->role;
         $payloadParam = [
             'sub' => $id_user,
             'iat' => now()->timestamp,
             'exp' => now()->addDays(3)->timestamp,
-            'roles' => $roles
+            'roles' => $role
         ];
         $payload = JWTFactory::customClaims($payloadParam)->make();
         $token = JWTAuth::encode($payload)->get();
-        return response()->json(['token'=>$token]);
+        return response()->json(['token'=>$token, 'role'=>$role],200);
     }
 }

@@ -19,7 +19,7 @@
                         .radio__item
                             input(type='radio' name='male' id='male2' value='Женский' v-model='this.form.male')
                             label(for='male2') Женский
-                    span.error(v-if="errors.male") {{ errors.tel }}
+                    span.error(v-if="errors.male") {{ errors.male }}
                 .input__group
                     label(for='#tel') Телефон
                     input(type='tel' id='tel' v-model='this.form.tel')
@@ -54,11 +54,11 @@ export default {
         validateForm(){
             this.errors = {}
             let valid = true
-            if (!/^[А-Яа-яЁёA-Za-z\s\-]{5,100}$/.test(this.form.fio)) {
+            if (!this.form.fio || !/^[А-Яа-яЁёA-Za-z\s\-]{5,100}$/.test(this.form.fio)) {
                 this.errors.fio = 'ФИО должно содержать только буквы, пробелы'
                 valid = false
             }
-            if (!/^[0-9A-Za-z_.+-]{1,64}@[0-9A-Za-z_-]{1,10}\.[0-9A-Za-z_-]{2,6}$/.test(this.form.email)) {
+            if (!this.form.email || !/^[0-9A-Za-z_.+-]{1,64}@[0-9A-Za-z_-]{1,10}\.[0-9A-Za-z_-]{2,6}$/.test(this.form.email)) {
                 this.errors.email = 'Некорректный email'
                 valid = false
             }
@@ -82,7 +82,6 @@ export default {
         },
         async handleSubmit(){
             if (!this.validateForm()) {
-                console.log('Всё плохо') 
                 return 
             }
             try{
@@ -94,13 +93,13 @@ export default {
                     "email":this.form.email,
                     "password":this.form.password,
                 })
-                console.log(response.data)
+                localStorage.setItem('token', response.data.token);
+                this.$router.push('/user-cabinet')
             }
             catch(error){
-                const msg = error.response?.data || 'Ошибка входа';
+                const msg = error.response?.data.err || 'Ошибка входа';
                 alert(msg);
             }
-            console.log('Всё чётко')
         }
     }
 }
