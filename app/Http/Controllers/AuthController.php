@@ -59,7 +59,7 @@ class AuthController extends Controller
         $email = $request->input('email');
         $user = DB::select('SELECT * FROM users WHERE email = ?', [$email]);
         if(!$user){
-            return response()->json(['err' => 'Неверный логин или пароль'],402);
+            return response()->json(['err' => 'Данный логин не зарегистрирован'],402);
         }
         if (!Hash::check($password, $user[0]->password)) {
             return response()->json(['err' => 'Неверный логин или пароль'],402);

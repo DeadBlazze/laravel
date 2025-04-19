@@ -6,7 +6,7 @@
             .records 
                 .record(v-for='record in this.records' :key='record.id_application')
                     h2 {{record.mark}} {{record.model}}
-                    P {{record.problem}}
+                    p {{record.problem}}
                     p Дата обслуживания: {{record.date}}
                     .status
                         p Статус: {{record.status}}
@@ -61,6 +61,7 @@ export default {
     methods: {
         logout(){
             localStorage.removeItem('token')
+            localStorage.removeItem('role');
             this.token = ''
             if(!this.token){
                 this.$router.push('/login')

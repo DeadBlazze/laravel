@@ -9,12 +9,13 @@
             .records 
                 .record(v-for='record in this.records' :key='record.id_application')
                     h2 {{record.mark}} {{record.model}}
-                    P {{record.problem}}
+                    p {{record.problem}}
                     p Дата обслуживания: {{record.date}}
                     p Статус: {{record.status}}
 </template>
 <script>
 import axios from 'axios';
+import { useUserStore } from '@/stores/user';
 export default {
     data() {
         return {
@@ -44,6 +45,7 @@ export default {
     methods: {
         logout(){
             localStorage.removeItem('token')
+            useUserStore().unsetRole()
             this.token = ''
             if(!this.token){
                 this.$router.push('/login')

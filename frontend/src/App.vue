@@ -10,11 +10,13 @@
     RouterView
 </template>
 <script>
+import { useUserStore } from './stores/user';
 export default {
     computed: {
         isAdminPage() {
-            const path = this.$route.path;
-            return path === '/' || path.startsWith('/admin');
+            let userStore = useUserStore()
+            let role = userStore.isAdmin
+            return role
         }
     }
 }

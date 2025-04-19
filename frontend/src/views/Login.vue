@@ -17,6 +17,7 @@
 </template>
 <script>
 import axios from 'axios'
+import { useUserStore } from '@/stores/user'
 export default {
     data() {
         return {
@@ -50,7 +51,8 @@ export default {
                     "email":this.form.email,
                     "password":this.form.password
                 })
-                console.log(response.data)
+                let userStore = useUserStore()
+                userStore.setUserRole(response.data.role)
                 if(response.data.token && response.data.role === 'admin'){
                     localStorage.setItem('token', response.data.token);
                     this.$router.push('/admin')
@@ -64,8 +66,9 @@ export default {
                 }
             }
             catch(error){
-                const msg = error.response?.data.err || 'Ошибка входа';
-                alert(msg);
+                alert(error)
+                // const msg = error.response?.data.err || 'Ошибка входа';
+                // alert(msg);
             }
         }
     }
