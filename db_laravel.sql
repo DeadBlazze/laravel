@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: MySQL-8.0
--- Время создания: Апр 18 2025 г., 18:00
+-- Время создания: Апр 19 2025 г., 19:29
 -- Версия сервера: 8.0.41
 -- Версия PHP: 8.1.31
 
@@ -44,7 +44,8 @@ CREATE TABLE `applications` (
 INSERT INTO `applications` (`id_application`, `id_user`, `date`, `model`, `problem`, `mark`, `status`) VALUES
 (9, 5, '2025-04-24', 'Palmero El premiero', 'Отвалился бампер и капот накрылся. масло вскипело', 'Nissan', 'В процессе'),
 (10, 5, '2025-04-24', 'GTR', 'Отвалилась тапочка газа. Не могу полностью нажать', 'Porshe', 'Завершено'),
-(11, 8, '2025-05-24', 'adasds', 'Трещит кардан', 'Audi', 'Создана');
+(11, 8, '2025-05-24', 'adasds', 'Трещит кардан', 'Audi', 'Создана'),
+(12, 7, '2025-04-17', '2107', 'Коробка передач отказала', 'ВАЗ', 'Создана');
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 ('1sgGhjQqPeIqU8aoc1VnvyAsG1XJoLl0WJOy1S9g', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWDY2WEZDRkNhb0lSczU4V1ZvNTBJOVFVWVFUZTBKdU00TGppQ2tiZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTU6Imh0dHBzOi8vbGFyYXZlbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744927043),
 ('aZwkpsgBUQi0zjmAUvUvYqwjeFU1TkB5V5AzVPbw', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicFM3SjZqN01hclVVUjhDc3BHRThud0ViZ2xtVFR3bmV2RFJneUxtRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744794078),
 ('m7OzECesBZS41T6C6ORt6xbWXwtYEtu7zHz3bxfa', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ0NYdnhINEdWRUdPWGZ5NVZyT1FSTlNnMmJHR2c1czRtZGFjRU1uSCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTU6Imh0dHBzOi8vbGFyYXZlbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744898822),
+('muTY3JNEJX5yUzZz2cFu1V4DUjhXUEkbeWzAmMwx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiclYxVXhVdG56TjFBNGQ4c2llZjRaRjZKSk1lWWRwVExRWGlwN0pITiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTU6Imh0dHBzOi8vbGFyYXZlbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744988791),
 ('RXCY436GceR6FrOyO3d4T7yVhaMaAbPjYgHYKzQZ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMnNGUmxGM1NLNzZ0YmhVellnWEM3TnBNdnVlaXRDeU1OZXJTTDlscCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTU6Imh0dHBzOi8vbGFyYXZlbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744917207),
 ('Z4NlibeDFyUfJSUrxclDUP1nDEyr3896X75YSGNb', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQXVRVVlIdU4wVWJFTmQwV3NRZVdsQnhuMk1Yc0xvTzl4OEIwYWVHZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTU6Imh0dHBzOi8vbGFyYXZlbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1744744078);
 
@@ -192,7 +194,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id_application` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_application` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
