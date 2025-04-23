@@ -100,7 +100,7 @@ export default {
                 this.$router.push('/user-cabinet')
             }
             catch(error){
-                const msg = error.response?.data.err || 'Ошибка входа';
+                const msg = error.response?.data.err || error;
                 alert(msg);
             }
         }

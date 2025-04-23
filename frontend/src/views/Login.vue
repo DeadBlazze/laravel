@@ -66,9 +66,8 @@ export default {
                 }
             }
             catch(error){
-                alert(error)
-                // const msg = error.response?.data.err || 'Ошибка входа';
-                // alert(msg);
+                const msg = error.response?.data.err || error;
+                alert(msg);
             }
         }
     }
