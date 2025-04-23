@@ -82,7 +82,7 @@ export default {
         align-items: center;
         padding-top: 5rem;
         h1{
-            width: 500px;
+            width: fit-content;
         }
         form{
             display: flex;
