@@ -73,7 +73,7 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .form__inner{
         width: 100%;
         display: flex;
@@ -87,7 +87,6 @@ export default {
         form{
             display: flex;
             flex-direction: column;
-            width: 500px;
             border: 2px solid black;
             border-radius: 5px;
             padding: 1rem 1rem;

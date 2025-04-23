@@ -101,7 +101,6 @@ export default {
         form{
             display: flex;
             flex-direction: column;
-            width: 500px;
             border: 2px solid black;
             border-radius: 5px;
             padding: 1rem 1rem;
