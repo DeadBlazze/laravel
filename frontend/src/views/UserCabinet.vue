@@ -15,7 +15,6 @@
 </template>
 <script>
 import axios from 'axios';
-import { useUserStore } from '@/stores/user';
 export default {
     data() {
         return {
@@ -28,6 +27,7 @@ export default {
         this.token = token
         if(!token){
             this.$router.push('/login')
+            return
         }
         try{
             const response = await axios.get(import.meta.env.VITE_BACK_URL +'/get-records',{
@@ -38,14 +38,14 @@ export default {
             this.records = response.data.records
         }
         catch(error){
-            const msg = response.data || 'Ошибка загрузки заявок'
+            const msg = error.response.data.err || 'Ошибка загрузки заявок'
             alert(msg)
+            this.$router.push('/login')
         }
     },
     methods: {
         logout(){
             localStorage.removeItem('token')
-            useUserStore().unsetRole()
             this.token = ''
             if(!this.token){
                 this.$router.push('/login')
@@ -55,23 +55,26 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.wrapper{
-    padding: 0 10%;
-    p   {
-        font-size: 1.3rem;
-    }
-    h2{
-        font-weight: 600;
-    }
-    h1{
-        margin-bottom: 1rem;
+.user__cabinet{
+    margin-bottom: 30px;
+    .wrapper{
+        padding: 0 10%;
+        p   {
+            font-size: 1.3rem;
+        }
+        h2{
+            font-weight: 600;
+        }
+        h1{
+            margin-bottom: 1rem;
 
-    }
-    .records{
-        margin-top: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        }
+        .records{
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
     }
 }
 </style>

@@ -75,7 +75,7 @@ export default {
                 this.$router.push('/user-cabinet')
             }
             catch(error){
-                const msg = error.response?.data || "Ошибка записи";
+                const msg = error.response?.data.err || "Ошибка записи";
                 alert(msg);
             }
         }

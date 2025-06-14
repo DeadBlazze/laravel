@@ -8,6 +8,9 @@
                     h2 {{record.mark}} {{record.model}}
                     p {{record.problem}}
                     p Дата обслуживания: {{record.date}}
+                    p {{record.fio}}
+                    p тел: {{record.tel}}
+                    p почта:  {{record.email}}
                     .status
                         p Статус: {{record.status}}
                         router-link(to="" @click = 'statusChange(record)')  Изменить
@@ -42,6 +45,7 @@ export default {
         this.token = token
         if(!token){
             this.$router.push('/login')
+            return
         }
         try{
             const response = await axios.get(import.meta.env.VITE_BACK_URL+'/admin-get-records',{
@@ -61,7 +65,8 @@ export default {
     methods: {
         logout(){
             localStorage.removeItem('token')
-            localStorage.removeItem('role');
+            const header = this.$root.$refs.header;
+            header.unsetRole();
             this.token = ''
             if(!this.token){
                 this.$router.push('/login')
@@ -101,67 +106,70 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.wrapper{
-    padding: 0 10%;
-    p   {
-        font-size: 1.3rem;
-    }
-    h2{
-        font-weight: 600;
-    }
-    h1{
-        margin-bottom: 1rem;
-
-    }
-    .records{
-        margin-top: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        .record{
-            .status{
-                display: flex;
-                align-items: center;
-                gap: 30px;
-                a{
-                    font-size: 1.2rem;
+.admin__cabinet{
+    margin-bottom: 30px;
+    .wrapper{
+        padding: 0 10%;
+        p   {
+            font-size: 1.3rem;
+        }
+        h2{
+            font-weight: 600;
+        }
+        h1{
+            margin-bottom: 1rem;
+    
+        }
+        .records{
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .record{
+                .status{
+                    display: flex;
+                    align-items: center;
+                    gap: 30px;
+                    a{
+                        font-size: 1.2rem;
+                    }
                 }
             }
         }
-    }
-
-    .modal {
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-color: rgba(0,0,0,0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 999;
-        &__content {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            width: 600px;
+    
+        .modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.7);
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            p{
-                margin: 0.5rem 0;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            &__content {
+                background: white;
+                padding: 2rem;
+                border-radius: 12px;
+                width: 600px;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                p{
+                    margin: 0.5rem 0;
+                }
+                h2{
+                    margin: 0;
+                }
+                select{
+                    height:  2rem;
+                    font-size: 1.5rem;
+                    padding-left: 1rem;
+                }
             }
-            h2{
-                margin: 0;
+            .buttons {
+                display: flex;
+                justify-content: flex-end;
+                gap: 1rem;
             }
-            select{
-                height:  2rem;
-                font-size: 1.5rem;
-                padding-left: 1rem;
-            }
-        }
-        .buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
         }
     }
 }

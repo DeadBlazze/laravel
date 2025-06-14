@@ -36,7 +36,6 @@
 </template>
 <script>
 import axios from 'axios'
-import { useUserStore } from '@/stores/user'
 export default {
     data() {
         return {
@@ -94,8 +93,6 @@ export default {
                     "email":this.form.email,
                     "password":this.form.password,
                 })
-                let userStore = useUserStore()
-                userStore.setUserRole(response.data.role)
                 localStorage.setItem('token', response.data.token);
                 this.$router.push('/user-cabinet')
             }

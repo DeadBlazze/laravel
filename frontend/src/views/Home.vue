@@ -37,8 +37,6 @@ export default {
                     all: unset;
                 }
             }
-            
-
         }
     }
 </style>

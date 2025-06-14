@@ -13,7 +13,7 @@ class AdminController extends Controller
         if($role !== 'admin'){
             return response()->json(['err'=>'У вас недостаточно прав доступа'], 402);
         }
-        $records = DB::select('SELECT * FROM applications');
+        $records = DB::select('SELECT id_application, mark, model, problem, status, date, applications.id_user, fio, tel, email FROM applications INNER JOIN users ON applications.id_user = users.id_user;');
         return response()->json(['records'=>$records],200);
     }
     public function adminUpdateStatus(Request $request){
@@ -30,8 +30,7 @@ class AdminController extends Controller
         }
         else{
             return response()->json(['err'=>'Ошибка в запросе'],400);
-        }
-
-        
+        }        
     }
+    // $lastInsertedId = DB::getPdo()->lastInsertId();
 }

@@ -1,49 +1,12 @@
 <template lang="pug">
-    header.header 
-        nav 
-            ul
-                li 
-                    router-link(to="/") Название
-                li
-                    router-link(v-if="isAdminPage" to="/admin") Панель администратора
-                    router-link(v-else to="/user-cabinet") Личный кабинет
+    Header(ref='header')
     RouterView
 </template>
 <script>
-import { useUserStore } from './stores/user';
+import Header from './components/Header/Header.vue'
 export default {
-    computed: {
-        isAdminPage() {
-            let userStore = useUserStore()
-            let role = userStore.isAdmin
-            return role
-        }
+    components: {
+        Header
     }
 }
 </script>
-<style scoped lang="scss">
-header.header{
-    padding: 0;
-    margin: 0;
-    nav{
-        ul{
-            border-bottom: 5px solid rgb(109, 109, 253);
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.5rem;
-            padding: 1.7rem;
-            margin: 0;
-            li{
-                all: unset;
-                cursor: pointer;
-                a{
-                    all: unset;
-                }
-                a:hover{
-                    color: rgb(109, 109, 253);
-                }
-            }
-        }
-    }
-}
-</style>

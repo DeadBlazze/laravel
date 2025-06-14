@@ -17,7 +17,6 @@
 </template>
 <script>
 import axios from 'axios'
-import { useUserStore } from '@/stores/user'
 export default {
     data() {
         return {
@@ -51,15 +50,17 @@ export default {
                     "email":this.form.email,
                     "password":this.form.password
                 })
-                let userStore = useUserStore()
-                userStore.setUserRole(response.data.role)
-                if(response.data.token && response.data.role === 'admin'){
+                if(response.data.token){
                     localStorage.setItem('token', response.data.token);
-                    this.$router.push('/admin')
-                }
-                else if(response.data.token){
-                    localStorage.setItem('token', response.data.token);
-                    this.$router.push('/user-cabinet')
+                    let role = response.data.role
+                    const header = this.$root.$refs.header;
+                    header.setUserRole(role);
+                    if(role === 'admin'){
+                        this.$router.push('/admin')
+                    }
+                    else{
+                        this.$router.push('/user-cabinet')
+                    }
                 }
                 else{
                     alert('Ошибка входа'); 
