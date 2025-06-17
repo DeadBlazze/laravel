@@ -3,7 +3,7 @@
             nav 
                 ul
                     li 
-                        router-link(to="/") Название
+                        router-link(to="/") Курсы
                     li
                         router-link(:to="headerLink")
                             template(v-if="isAdmin") Панель администратора

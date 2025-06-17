@@ -40,6 +40,7 @@ export default {
         catch(error){
             const msg = error.response.data.err || 'Ошибка загрузки заявок'
             alert(msg)
+
             this.$router.push('/login')
         }
     },
@@ -47,6 +48,8 @@ export default {
         logout(){
             localStorage.removeItem('token')
             this.token = ''
+            const header = this.$root.$refs.header;
+            header.unsetRole()
             if(!this.token){
                 this.$router.push('/login')
             }

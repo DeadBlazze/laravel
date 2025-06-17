@@ -1,7 +1,7 @@
 <template lang="pug">
     section.swimming__pool
         .wrapper
-            h1 Бассейны.ру - Лучшие бассейны в Тюмени
+            h1 Курсы
             p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             button
                 router-link(to="/record") Записаться 

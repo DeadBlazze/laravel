@@ -4,11 +4,11 @@
             h1 Авторизация
             form.form(@submit.prevent='handleSubmit')
                 .input__group
-                    label(for='#email') Почта
+                    label(for='email') Почта
                     input(type='email' id='email' v-model='this.form.email')
                     span.error(v-if="errors.email") {{ errors.email }}
                 .input__group
-                    label(for='#password') Пароль
+                    label(for='password') Пароль
                     input(type='text' id='password' v-model='this.form.password')
                     span.error(v-if="errors.password") {{ errors.password }}
                 .button__group
