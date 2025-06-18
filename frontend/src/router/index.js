@@ -40,6 +40,37 @@ const router = createRouter({
       name: 'Admin',
       component: Admin,
     },
+    // {
+    //   path: '/admin',
+    //   component: Admin,
+    //   children: [
+    //     {
+    //       path: '',
+    //       component: AdminRequests
+    //     },
+    //     {
+    //       path: 'dashboard',
+    //       component: Dashboard
+    //     },
+    //     {
+    //       path: 'add-tour',
+    //       component: AddTour
+    //     },
+    //     {
+    //       path: 'edit-tour-list',
+    //       component: EditTourList
+    //     },
+    //     {
+    //       path: 'edit-tour/:id_tour',
+    //       component: EditTour
+            // this.id_tour = this.$route.params.id_tour
+    //     },
+    //     {
+    //       path: 'delete-tour',
+    //       component: DeleteTour
+    //     },
+    //   ]
+    // },
     {
       path: '/:pathMatch(.*)',
       name: 'N404',

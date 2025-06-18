@@ -5,7 +5,14 @@
             h2(v-if='!this.records[0]')
                 | У вас ещё нет заявок 
                 router-link(to="/record") Оставьте заявку здесь
-            button(@click='logout') Выйти
+            .lk-panel
+                button(@click='logout') Выйти
+                select(v-model='filterKey')
+                    option(value='id_application') По новизне
+                    option(value='date') По дате
+                    option(value='model') По модели
+                    option(value='mark') По марке
+                    option(value='status') По статусу
             .records 
                 .record(v-for='record in this.records' :key='record.id_application')
                     h2 {{record.mark}} {{record.model}}
@@ -19,7 +26,8 @@ export default {
     data() {
         return {
             response: null,
-            records: []
+            records: [],
+            filterKey: 'id_application'
         }
     },
     async mounted(){
@@ -53,6 +61,22 @@ export default {
             if(!this.token){
                 this.$router.push('/login')
             }
+        },
+        applicationSort(){
+            const key = this.filterKey
+            const sortMethods = {
+                id_application : (a,b) => a.id_application - b.id_application,
+                date : (a,b) => new Date(a.date) - new Date(b.date),
+                model : (a,b) => a.model.localeCompare(b.model),
+                mark : (a,b) => a.mark.localeCompare(b.mark),
+                status : (a,b) => a.status.localeCompare(b.status)
+            }
+            this.records.sort(sortMethods[this.filterKey])
+        }
+    },
+    watch:{
+        filterKey(){
+            this.applicationSort();
         }
     }
 }
@@ -71,6 +95,10 @@ export default {
         h1{
             margin-bottom: 1rem;
 
+        }
+        .lk-panel{
+            display: flex;
+            gap: 30px;
         }
         .records{
             margin-top: 2rem;
