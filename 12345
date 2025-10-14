@@ -2,3 +2,6 @@ Get-AppxPackage -AllUsers MicrosoftWindows.Client.CBS | Foreach {Add-AppxPackage
 taskkill /f /im explorer.exe
 Stop-Process -Name TextInputHost -ErrorAction SilentlyContinue
 Stop-Process -Name InputApp -ErrorAction SilentlyContinue
+
+Start-Process "C:\Windows\System32\ctfmon.exe"
+reg add "HKCU\Software\Microsoft\
